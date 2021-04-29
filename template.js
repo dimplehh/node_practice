@@ -1,4 +1,4 @@
-module.exports = {
+module.exports = {//내가 만든 module.js에서의 함수를 다른 영역에서 사용하고싶을때 이렇게 씀
     html:
     `
     <!DOCTYPE html>
@@ -90,9 +90,9 @@ module.exports = {
     `,
     getLITag: files => {
       let str = '';
-      const list = files.map(e => e.split('.txt')[0]);
+      const list = files.map(e => e.split('.txt')[0]);//새로운 객체를 만들어주는 역할을 하는 map (./data에서 받아온 파일이름 문자열을 .txt라는 것이 올때마다 나눔)
       for (let i = 0; i < list.length; i++) {
-        str += `<li><a href="./?title=${list[i]}">${list[i]}</a></li>`;
+        str += `<li><a href="./?title=${list[i]}">${list[i]}</a></li>`;//각각의 list 이름이 하나의 title주소로 가는 태그를 지니게 됨
       }
       return str;
     }
