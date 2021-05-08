@@ -46,7 +46,7 @@ http.createServer((req, res) => {
         </p>
         <a href="/">홈으로 가기</a> <!--홈으로 가기 누르면 홈으로 감-->
         <p>
-          <a href="/update?title=${title}">수정</a>
+          <a href="/update?title=${encodeURIComponent(title)}">수정</a>
           <form action="/delete_post" method="post">
             <input type="hidden" name="title" value="${encodeURIComponent(title)}"><!--title을 새롭게 encoding해서 title이라는 이름으로 deletepost로 던져주기-->
             <input type="submit" value="삭제">
@@ -139,7 +139,7 @@ http.createServer((req, res) => {
       }
       const content = post.content; //content를 새로 업데이트
       fs.writeFile(`./data/${title}.txt`, content, 'utf8', () => { //이부분은 create랑 동일
-        res.writeHead(302, {Location: `/?title=${title}`});
+        res.writeHead(302, {Location: `/?title=${encodeURIComponent(title)}`});//넘겨줄때 한글제목은 encodeURIComponent로 넘겨줘야 잘 됨.
         res.end();
       });
     });
